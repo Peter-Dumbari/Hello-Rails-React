@@ -1,7 +1,7 @@
 // store.js
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import thunkMiddleware from "redux-thunk";
-import axios from "axios";
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import axios from 'axios';
 
 // Reducer
 const initialState = {
@@ -12,11 +12,11 @@ const initialState = {
 
 const greetingReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_GREETING_REQUEST":
+    case 'FETCH_GREETING_REQUEST':
       return { ...state, loading: true, error: null };
-    case "FETCH_GREETING_SUCCESS":
+    case 'FETCH_GREETING_SUCCESS':
       return { ...state, loading: false, greeting: action.payload };
-    case "FETCH_GREETING_FAILURE":
+    case 'FETCH_GREETING_FAILURE':
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
@@ -29,31 +29,29 @@ const rootReducer = combineReducers({
 
 // Actions
 const fetchGreetingRequest = () => ({
-  type: "FETCH_GREETING_REQUEST",
+  type: 'FETCH_GREETING_REQUEST',
 });
 
 const fetchGreetingSuccess = (greeting) => ({
-  type: "FETCH_GREETING_SUCCESS",
+  type: 'FETCH_GREETING_SUCCESS',
   payload: greeting,
 });
 
 const fetchGreetingFailure = (error) => ({
-  type: "FETCH_GREETING_FAILURE",
+  type: 'FETCH_GREETING_FAILURE',
   payload: error,
 });
 
-export const fetchRandomGreeting = () => {
-  return (dispatch) => {
-    dispatch(fetchGreetingRequest());
-    axios
-      .get("/greetings/random") // Replace with your API endpoint
-      .then((response) => {
-        dispatch(fetchGreetingSuccess(response.data.message));
-      })
-      .catch((error) => {
-        dispatch(fetchGreetingFailure(error.message));
-      });
-  };
+export const fetchRandomGreeting = () => (dispatch) => {
+  dispatch(fetchGreetingRequest());
+  axios
+    .get('/greetings/random') // Replace with your API endpoint
+    .then((response) => {
+      dispatch(fetchGreetingSuccess(response.data.message));
+    })
+    .catch((error) => {
+      dispatch(fetchGreetingFailure(error.message));
+    });
 };
 
 // Create store with Thunk middleware

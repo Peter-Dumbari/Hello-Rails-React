@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchRandomGreeting } from "../../store";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRandomGreeting } from '../../store';
 
 function Greeting() {
   const dispatch = useDispatch();
@@ -14,7 +14,12 @@ function Greeting() {
     <div>
       <h1>Our Greetings to you 👇</h1>
       {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
+      {error && (
+      <p>
+        Error:
+        {error}
+      </p>
+      )}
       {greeting && <p>{greeting}</p>}
     </div>
   );
