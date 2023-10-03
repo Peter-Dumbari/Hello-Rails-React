@@ -116,10 +116,6 @@ To run tests, run the following command:
   rubocop
 ```
 
-### Deployment
-
-- Heroku etc.
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
